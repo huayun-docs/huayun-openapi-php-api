@@ -115,13 +115,25 @@ class CClient
      */
     private function buildApiException($respObject, $httpStatus)
     {
-        throw new ServerException(
-            property_exists($respObject, 'Message') ? $respObject->Message :
-                (property_exists($respObject, 'error') ? $respObject->error : 'ErrorMessage'),
-            property_exists($respObject, 'Code') ? $respObject->Code : 'ErrorCode',
-            $httpStatus,
-            property_exists($respObject, 'RequestId') ? $respObject->RequestId : 'ErrorRequestId'
-        );
+        $message = 'ErrorMessage';
+        $code = 'ErrorCode';
+        $requestId = 'ErrorRequestId';
+        if (is_object($respObject)) {
+            if (property_exists($respObject, 'ErrorMessage')) {
+                $message = $respObject->ErrorMessage;
+            } elseif (property_exists($respObject, 'Message')) {
+                $message = $respObject->Message;
+            } elseif (property_exists($respObject, 'error')) {
+                $message = $respObject->error;
+            }
+            if (property_exists($respObject, 'Code')) {
+                $code = $respObject->Code;
+            }
+            if (property_exists($respObject, 'RequestId')) {
+                $requestId = $respObject->RequestId;
+            }
+        }
+        throw new ServerException($message, $code, $httpStatus, $requestId);
     }
     
     /**

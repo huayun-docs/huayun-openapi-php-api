@@ -91,4 +91,15 @@ abstract class RpcRequest extends CRequest
     {
         return $this->bodyParameters;
     }
+
+    /**
+     * 设置参数便捷方式
+     */
+    public function __call($name, $arguments)
+    {
+        if (!empty($arguments[0])) {
+            $this->queryParameters[ucfirst($name)] = $arguments[0];
+        }
+        return $this;
+    }
 }

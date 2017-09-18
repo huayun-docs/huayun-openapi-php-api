@@ -15,10 +15,17 @@ class RebootInstance extends RpcRequest
 	}
 
 	/**
-	 * 主机Id
+	 * 主机Id *(星号为必须参数)
 	 * @var string
 	 */
 	private $id;
+
+	/**
+	 * 是否强制指定
+	 * true为硬重启,false为软重启
+	 * @var boolean/string
+	 */
+	private $force;
 
 	public function getId()
 	{
@@ -29,6 +36,18 @@ class RebootInstance extends RpcRequest
 	{
 		$this->id = $id;
 		$this->queryParameters['Id'] = $id;
+		return $this;
+	}
+
+	public function getForce()
+	{
+		return $this->force;
+	}
+
+	public function setForce($force)
+	{
+		$this->force = $force;
+		$this->queryParameters['Force'] = $force;
 		return $this;
 	}
 }

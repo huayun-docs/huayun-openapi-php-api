@@ -6,7 +6,7 @@
 namespace ChinacApi;
 
 //通信地址
-defined('HTTP_REQUEST_URL') or define('HTTP_REQUEST_URL', 'http://127.0.0.1:3000');
+defined('HTTP_REQUEST_URL') or define('HTTP_REQUEST_URL', 'https://api.chinac.com');
 
 //设置代理
 defined('ENABLE_HTTP_PROXY') or define('ENABLE_HTTP_PROXY', false);

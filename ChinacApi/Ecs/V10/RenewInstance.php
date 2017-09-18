@@ -15,16 +15,22 @@ class RenewInstance extends RpcRequest
 	}
 
 	/**
-	 * 主机Id
+	 * 主机Id *(星号为必须，下同)
 	 * @var string
 	 */
 	private $id;
 
 	/**
-	 * 年限大小
+	 * 年限大小 *
 	 * @var string
 	 */
 	private $period;
+
+	/**
+	 * 续费类型 *，目前只支持PREPAID
+	 * @var string
+	 */
+	private $payType;
 
 	public function getId()
 	{
@@ -47,6 +53,18 @@ class RenewInstance extends RpcRequest
 	{
 		$this->period = $period;
 		$this->queryParameters['Period'] = $period;
+		return $this;
+	}
+
+	public function getPayType()
+	{
+		return $this->payType;
+	}
+
+	public function setPayType($payType)
+	{
+		$this->payType = $payType;
+		$this->queryParameters['PayType'] = $payType;
 		return $this;
 	}
 }
