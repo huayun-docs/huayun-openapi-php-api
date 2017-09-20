@@ -1,3 +1,3 @@
 # huayun-openapi-php-api
 - 提供调用华云开放接口的SDK代码
-- 查看example.php示例
+- 各接口调用可查看example.php示例
