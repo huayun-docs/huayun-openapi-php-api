@@ -12,5 +12,7 @@ $client = new ChinacApi\Core\CClient($profile);
 
 $request = new ChinacApi\Ecs\V10\DescribeInstances();
 $request->setMethod('GET')->setCount(1);
+// 调用旧版$request->setOldVersion()
+// 调用v2新版$request->setV2Version()，默认是新版
 $response = $client->getResponse($request);
 print_r($response);

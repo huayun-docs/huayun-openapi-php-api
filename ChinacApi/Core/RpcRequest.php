@@ -92,6 +92,18 @@ abstract class RpcRequest extends CRequest
         return $this->bodyParameters;
     }
 
+    public function setOldVersion()
+    {
+        $this->requestUrl = HTTP_REQUEST_URL_OLD;
+        return $this;
+    }
+
+    public function setV2Version()
+    {
+        $this->requestUrl = HTTP_REQUEST_URL;
+        return $this;
+    }
+
     /**
      * 设置参数便捷方式
      */

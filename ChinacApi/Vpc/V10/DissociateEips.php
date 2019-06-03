@@ -9,26 +9,26 @@ use ChinacApi\Core\RpcRequest;
 
 class DissociateEips extends RpcRequest
 {
-	function  __construct()
-	{
-		parent::__construct('Vpc', '1.0', 'DissociateEips');
-	}
+    function  __construct()
+    {
+        parent::__construct('Vpc', '1.0', 'DissociateEips');
+    }
 
-	/**
-	 * 公网IP *(星号为必填，下同)
-	 * @var string
-	 */
-	private $eip0;
+    /**
+     * 公网IP *(星号为必填，下同)
+     * @var string
+     */
+    private $eip0;
 
-	public function getEip0()
-	{
-		return $this->eip0;
-	}
+    public function getEip0()
+    {
+        return $this->eip0;
+    }
 
-	public function setEip0($eip0)
-	{
-		$this->eip0 = $eip0;
-		$this->queryParameters['Eip.0'] = $eip0;
-		return $this;
-	}
+    public function setEip0($eip0)
+    {
+        $this->eip0 = $eip0;
+        $this->queryParameters['Eip.0'] = $eip0;
+        return $this;
+    }
 }

@@ -9,26 +9,26 @@ use ChinacApi\Core\RpcRequest;
 
 class StopInstance extends RpcRequest
 {
-	function  __construct()
-	{
-		parent::__construct('Ecs', '1.0', 'StopInstance');
-	}
+    function  __construct()
+    {
+        parent::__construct('Ecs', '1.0', 'StopInstance');
+    }
 
-	/**
-	 * 主机Id
-	 * @var string
-	 */
-	private $id;
+    /**
+     * 主机Id
+     * @var string
+     */
+    private $id;
 
-	public function getId()
-	{
-		return $this->id;
-	}
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	public function setId($id)
-	{
-		$this->id = $id;
-		$this->queryParameters['Id'] = $id;
-		return $this;
-	}
+    public function setId($id)
+    {
+        $this->id = $id;
+        $this->queryParameters['Id'] = $id;
+        return $this;
+    }
 }
