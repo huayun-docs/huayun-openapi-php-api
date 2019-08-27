@@ -15,13 +15,13 @@ class Profile
     private static $regionId;
     private static $isigner;
     private static $iCredential;
-    
+
     private function  __construct($regionId, $credential)
     {
         self::$regionId = $regionId;
         self::$credential = $credential;
     }
-    
+
     /**
      * 初始化必要参数
      * @param  string $regionId     机房标识
@@ -35,7 +35,7 @@ class Profile
         self::$profile = new Profile($regionId, $credential);
         return self::$profile;
     }
-    
+
     public function getSigner()
     {
         if (null == self::$isigner) {
@@ -44,7 +44,7 @@ class Profile
 
         return self::$isigner;
     }
-    
+
     public function getCredential()
     {
         if (null == self::$credential && null != self::$iCredential) {

@@ -82,7 +82,7 @@ class AssociateEip extends RpcRequest
     public function setRouterId($routerId)
     {
         $this->routerId = $routerId;
-        $this->queryParameters['routerId'] = $routerId;
+        $this->queryParameters['RouterId'] = $routerId;
         return $this;
     }
 }

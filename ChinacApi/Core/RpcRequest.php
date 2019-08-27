@@ -48,24 +48,27 @@ abstract class RpcRequest extends CRequest
         foreach ($params as $key => $value) {
             $params[$key] = $this->prepareValue($value);
         }
-        $params['Region'] = $this->getRegionId();
-        $params['AccessKeyId'] = $credential->getAccessKeyId();
-        $params['Date'] = $this->headers['Date'];
-        $params['Action'] = $this->getActionName();
-        $params['Version'] = $this->getVersion();
-        $signature = $this->computeSignature($params, $credential->getAccessSecret(), $signer);
+        $common = [
+            'Region'      => $this->getRegionId(),
+            'AccessKeyId' => $credential->getAccessKeyId(),
+            'Date'        => $this->headers['Date'],
+            'Action'      => $this->getActionName(),
+            'Version'     => $this->getVersion()
+        ];
+        $params = array_merge_recursive($common, $params);
         $requestUrl = rtrim($this->requestUrl ?: HTTP_REQUEST_URL, '/') . '/';
-        if (parent::getMethod() == 'POST') {
-            $params['Signature'] = $signature;
-            $this->bodyParameters = $params;
-        } else {
-            $requestUrl .= '?' . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
-            $requestUrl .= '&Signature=' . $signature;
+        if (parent::getMethod() != 'GET') {
+            $this->bodyParameters = json_encode($params);
+            $params = $common;
         }
+        ksort($params);
+        $signature = $this->computeSignature($params, $credential->getAccessSecret(), $signer);
+        $requestUrl .= '?' . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
+        $requestUrl .= '&Signature=' . $signature;
 
         return $requestUrl;
     }
-    
+
     private function computeSignature($parameters, $accessKeySecret, $signer)
     {
         $stringToSign = parent::getMethod() . "\n";
@@ -86,7 +89,7 @@ abstract class RpcRequest extends CRequest
         $res = preg_replace('/%7E/', '~', $res);
         return $res;
     }
-    
+
     public function getBodyParameter()
     {
         return $this->bodyParameters;
