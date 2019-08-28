@@ -59,10 +59,10 @@ class DescribeSnapshots extends RpcRequest
     private $endTime;
 
     /**
-     * 是否锁住
+     * 是否系统盘快照，true是、false否
      * @var string
      */
-    private $isLocked;
+    private $isSystem;
 
     public function getOffset()
     {
@@ -148,15 +148,15 @@ class DescribeSnapshots extends RpcRequest
         return $this;
     }
 
-    public function getIsLocked()
+    public function getIsSystem()
     {
-        return $this->isLocked;
+        return $this->IsSystem;
     }
 
-    public function setIsLocked($isLocked)
+    public function setIsSystem($isSystem)
     {
-        $this->isLocked = $isLocked;
-        $this->queryParameters['IsLocked'] = $isLocked;
+        $this->isSystem = $isSystem;
+        $this->queryParameters['IsSystem'] = $isSystem;
         return $this;
     }
 }
