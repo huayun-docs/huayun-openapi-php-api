@@ -109,12 +109,6 @@ class DescribeInstances extends RpcRequest
      */
     private $instanceSeries;
 
-    /**
-     * 云主机是否锁住
-     * @var string
-     */
-    private $locked;
-
     public function getId0()
     {
         return $this->id0;
@@ -280,18 +274,6 @@ class DescribeInstances extends RpcRequest
     {
         $this->instanceSeries = $instanceSeries;
         $this->queryParameters['InstanceSeries'] = $instanceSeries;
-        return $this;
-    }
-
-    public function getLocked()
-    {
-        return $this->locked;
-    }
-
-    public function setLocked($locked)
-    {
-        $this->locked = $locked;
-        $this->queryParameters['Locked'] = $locked;
         return $this;
     }
 }
