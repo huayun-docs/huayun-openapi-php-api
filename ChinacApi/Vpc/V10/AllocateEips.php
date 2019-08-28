@@ -41,9 +41,22 @@ class AllocateEips extends RpcRequest
 
     /**
      * 网络类型
+     * 取值：ChinaTelecom(中国电信), BGP，ChinaUnicom（中国联通），ChinaMobile（中国移动），Oversea（海外）
      * @var string
      */
     private $eipType;
+
+    /**
+     * 宽带计费类型，购买按流量宽带时需要这个值
+     * @var string
+     */
+    private $bandwidthPayType;
+
+    /**
+     * 开通数量
+     * @var integer
+     */
+    private $count;
 
     public function getBandwidth()
     {
@@ -102,6 +115,30 @@ class AllocateEips extends RpcRequest
     {
         $this->eipType = $eipType;
         $this->queryParameters['EipType'] = $eipType;
+        return $this;
+    }
+
+    public function getBandwidthPayType()
+    {
+        return $this->bandwidthPayType;
+    }
+
+    public function setBandwidthPayType($bandwidthPayType)
+    {
+        $this->bandwidthPayType = $bandwidthPayType;
+        $this->queryParameters['BandwidthPayType'] = $bandwidthPayType;
+        return $this;
+    }
+
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    public function setCount($count)
+    {
+        $this->count = $count;
+        $this->queryParameters['Count'] = $count;
         return $this;
     }
 }
