@@ -22,6 +22,12 @@ class CreateInstanceSnapshot extends RpcRequest
     private $instanceId;
 
     /**
+     * 快照创建类型，目前只能取值CUSTOMER
+     * @var string
+     */
+    private $createType;
+
+    /**
      * 快照名称
      * @var string
      */
@@ -42,6 +48,18 @@ class CreateInstanceSnapshot extends RpcRequest
     {
         $this->instanceId = $instanceId;
         $this->queryParameters['InstanceId'] = $instanceId;
+        return $this;
+    }
+
+    public function getCreateType()
+    {
+        return $this->createType;
+    }
+
+    public function setCreateType($createType)
+    {
+        $this->createType = $createType;
+        $this->queryParameters['CreateType'] = $createType;
         return $this;
     }
 
