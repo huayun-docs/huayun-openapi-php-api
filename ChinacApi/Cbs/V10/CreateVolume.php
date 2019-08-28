@@ -31,7 +31,7 @@ class CreateVolume extends RpcRequest
      * 云硬盘描述
      * @var string
      */
-    private $describe;
+    private $description;
 
     /**
      * 云硬盘大小 *|(某些条件必须)
@@ -71,6 +71,12 @@ class CreateVolume extends RpcRequest
      */
     private $period;
 
+    /**
+     * 开通个数
+     * @var integer
+     */
+    private $count;
+
     public function getPayType()
     {
         return $this->payType;
@@ -95,15 +101,15 @@ class CreateVolume extends RpcRequest
         return $this;
     }
 
-    public function getDescribe()
+    public function getDescription()
     {
-        return $this->describe;
+        return $this->description;
     }
 
-    public function setDescribe($describe)
+    public function setDescription($description)
     {
-        $this->describe = $describe;
-        $this->queryParameters['Describe'] = $describe;
+        $this->description = $description;
+        $this->queryParameters['Description'] = $description;
         return $this;
     }
 
@@ -176,6 +182,18 @@ class CreateVolume extends RpcRequest
     {
         $this->period = $period;
         $this->queryParameters['Period'] = $period;
+        return $this;
+    }
+
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    public function setCount($count)
+    {
+        $this->count = $count;
+        $this->queryParameters['Count'] = $count;
         return $this;
     }
 }
