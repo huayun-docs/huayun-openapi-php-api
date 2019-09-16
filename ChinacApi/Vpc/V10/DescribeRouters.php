@@ -72,12 +72,6 @@ class DescribeRouters extends RpcRequest
      */
     private $payType;
 
-    /**
-     * 路由器是否锁住
-     * @var string
-     */
-    private $locked;
-
     public function getOffset()
     {
         return $this->offset;
@@ -183,18 +177,6 @@ class DescribeRouters extends RpcRequest
     {
         $this->payType = $payType;
         $this->queryParameters['PayType'] = $payType;
-        return $this;
-    }
-
-    public function getLocked()
-    {
-        return $this->locked;
-    }
-
-    public function setLocked($locked)
-    {
-        $this->locked = $locked;
-        $this->queryParameters['Locked'] = $locked;
         return $this;
     }
 }
