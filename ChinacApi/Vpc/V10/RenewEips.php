@@ -18,7 +18,7 @@ class RenewEips extends RpcRequest
      * 公网IP *(星号为必填，下同)
      * @var string
      */
-    private $eip0;
+    private $eip = [];
 
     /**
      * 续费月数 *
@@ -26,15 +26,22 @@ class RenewEips extends RpcRequest
      */
     private $period;
 
-    public function getEip0()
+    public function getEip()
     {
-        return $this->eip0;
+        return $this->eip;
     }
 
-    public function setEip0($eip0)
+    public function setEip($eip)
     {
-        $this->eip0 = $eip0;
-        $this->queryParameters['Eip.0'] = $eip0;
+        if (is_string($eip)) {
+            $eip = explode(',', trim(trim($eip), ','));
+        }
+        $i = 0;
+        foreach ($eip as $v) {
+            $this->queryParameters['Eip.' . $i] = (string)$v;
+            ++ $i;
+            $this->eip[] = (string)$v;
+        }
         return $this;
     }
 

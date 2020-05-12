@@ -113,7 +113,9 @@ abstract class RpcRequest extends CRequest
     public function __call($name, $arguments)
     {
         if (!empty($arguments[0])) {
-            $this->queryParameters[ucfirst($name)] = $arguments[0];
+            $name = ucfirst($name);
+            $name = strtr($name, ['Nindex'=>'.']);
+            $this->queryParameters[$name] = $arguments[0];
         }
         return $this;
     }
